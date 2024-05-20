@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos</title>
+    <style>
+      iframe{
+        width:450px;
+        height:500px;
+        margin-left:100px;
+        margin-bottom:20px;
+        margin-top:20px;
+        /* position: absolute; */
+      }
+      #output{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      input[type="button"]{
+        margin:30px;
+        width:90px;
+        height: 30px;
+        border-radius: 2px;
+      }
+      body{
+        align-items: center;
+        background-image: url("/images/yt2.avif");
+            background-size: cover;
+            background-repeat: no-repeat;
+      }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+     
+const apiKey = 'AIzaSyBpFyoWN43xFyu3yohhYg-oN4_yblgGD18';
+
+function search(){
+  // document.getElementById("input").value
+    const query = "how to make "+localStorage.getItem('title')+" in telugu";
+
+// Construct the request URL
+const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=6&q=${encodeURIComponent(query)}&key=${apiKey}`;
+
+// Make a GET request to the API
+fetch(apiUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Handle API response
+    const videoItems = data.items;
+    const videoLinks = videoItems.map(item => {
+        const videoUrl = `https://www.youtube.com/embed/${item.id.videoId}`;
+        return videoUrl;
+    });
+    console.log('Video links:', videoLinks);
+    let output=document.getElementById("output");
+    videoLinks.forEach(link => {
+                    let iframe = document.createElement("iframe");
+                    iframe.setAttribute("src", link);
+                    iframe.setAttribute("allowfullscreen", "");
+                    iframe.setAttribute("frameborder", "0");
+                    output.appendChild(iframe);
+                });
+  })
+  .catch(error => {
+    console.error('There was a problem with the request:', error);
+  });
+
+}
+search();
+</script>
+</body>
+</html>
