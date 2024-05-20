@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search by ingredients</title>
+    <link rel="Stylesheet" href="css/ingredients.css">
+    <script defer>
+        function search(){
+            event.preventDefault();
+            ingredients=[]
+            let ingre=document.getElementById("search_ingredient");
+            ingredients.push(ingre.value);
+            let checkboxes=document.querySelectorAll("input[type='checkbox']:checked");
+            checkboxes.forEach(checkbox=>{
+                ingredients.push(checkbox.value);
+            })
+            localStorage.setItem('ingredients',JSON.stringify(ingredients));
+            const cuisineType=document.getElementById('cuisine').value;
+            const mealType=document.getElementById('meal').value;
+            localStorage.setItem('cuisineType',cuisineType);
+            localStorage.setItem('mealType',mealType);
+            console.log(ingredients);
+    }
+    </script>
+</head>
+<body class="ing">
+    <div class="ing">
+      <a class = "nav" href="/home">Home</a>
+      <a class = "nav" href="/contact">Contact Us</a>
+      <a class = "nav" href="/change-password"> Change Password </a>
+      <a class = "nav" href="/history"> Display Search History </a>
+      <a class = "nav" href="/logout">Log out</a>
+    </div>
+    
+    <form id="searchForm" method="POST" autocomplete="off">
+        <label for="Cuisine Type"><b>Cuisine Type</b></label>
+    <select  id="cuisine" name="cuisineType">
+      <option value="none">None</option>
+      <option value="mediterranean">Mediterranean</option>
+      <option value="american">american</option>
+      <option value="asian">asian</option>
+      <option value="british">british</option>
+      <option value="caribbean">caribbean</option>
+      <option value="central europe">central europe</option>
+      <option value="chinese">chinese</option>
+      <option value="eastern europe">eastern europe</option>
+      <option value="french">french</option>
+      <option value="greek">greek</option>
+      <option value="indian">indian</option>
+      <option value="italian">italian</option>
+      <option value="japanese">japanese</option>
+      <option value="korean">korean</option>
+      <option value="mexican">mexican</option>
+      <option value="middle eastern">middle eastern</option>
+      <option value="nordic">	nordic</option>
+      <option value="south american">south american</option>
+      <option value="south east asian">south east asian</option>
+      <option value="world">world</option>
+    </select>
+    <label for="Meal Type"><b>Meal Type</b></label>
+      <select  id="meal" name="mealType">
+        <option value="none">None</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="brunch">Brunch</option>
+        <option value="lunch">Lunch/Dinner</option>
+        <option value="snack">Snack</option>
+        <option value="teatime">Teatime</option>
+      </select>
+      <p style="text-align:center;color:grey">Note: Seperate the ingredients with comma in Search bar</p>
+
+        <input type="search" id="search_ingredient" placeholder="Enter ingredients to search" name="ing">
+        <input type="submit" value="Search Recipes" >
+        
+        <div id="ingredients_list">
+       
+        
+          <li><div id="checks"><input type="checkbox" name="checkbox" value="butter"><label for="checkbox"><img class="ing" src="images/butter.jpg" alt="butter"> </label><p>Butter</p> </div></li> 
+              <li><div id="checks"><input type="checkbox" name="checkbox" value="egg"><label for="checkbox"><img class="ing" src="images/egg.jpg" alt="egg"> </label> <p>Egg</p></div></li>
+              <li><div id="checks"><input type="checkbox" name="checkbox" value="garlic"><label for="checkbox"><img class="ing" src="images/garlic.jpg" alt="garlic"></label><p>Garlic</p></div> </li> 
+           <li><div id="checks"><input type="checkbox" name="checkbox" value="onions"> <label for="checkbox"><img class="ing" src="images/onions.jpg" alt="onions"></label><p>Onions</p>  </div></li>
+           <li> <div id="checks"><input type="checkbox" name="checkbox" value="jaggery"><label for="checkbox"><img class="ing" src="images/jaggery.webp" alt="jaggery"></label><p>Jaggery</p> </div></li>
+           <li><div id="checks"><input type="checkbox" name="checkbox" value="ghee"><label for="checkbox"><img class="ing" src="images/ghee.jpeg" alt="ghee"></label> <p>Ghee</p> </div></li> 
+            <li> <div id="checks"><input type="checkbox" name="checkbox" value="chickpeas"><label for="checkbox"><img class="ing" src="images/chickpeas.avif" alt="chickpeas"></label><p>Chick peas </p></div></li>
+            <li><div id="checks"><input type="checkbox" name="checkbox" value="chillies"><label for="checkbox"><img class="ing" src="images/chillies.jpeg" alt="chillies"></label> <p>Chillies</p> </div></li> 
+            <li><div id="checks"><input type="checkbox" name="checkbox" value="greengram"><label for="checkbox"><img class="ing" src="images/greengram.jpg" alt="greengram"></label><p>Green gram</p> </div> </li>
+            <li> <div id="checks"><input type="checkbox" name="checkbox" value="greenpeas"><label for="checkbox"><img class="ing" src="images/greenpeas.jpg" alt="greenpeas"></label><p>Green peas</p> </div></li> 
+            <li><div id="checks"><input type="checkbox" name="checkbox" value="ilachi"><label for="checkbox"><img class="ing" src="images/ilachi.jpg" alt="ilachi"></label><p>Ilachi</p></div> </li>
+            <li> <div id="checks"><input type="checkbox" name="checkbox" value="kidney beans"><label for="checkbox"><img class="ing" src="images/kidneybeans.jpg" alt="kidneybeans"></label> <p>Kidney beans</p> </div></li>
+            <li> <div id="checks"><input type="checkbox" name="checkbox" value="coriander"><label for="checkbox"><img class="ing" src="images/coriander.webp" alt="coriander"></label><p>Corainder</p>  </div></li>
+            <li><div id="checks"><input type="checkbox" name="checkbox" value="yellow lenetils"><label for="checkbox"><img class="ing" src="images/yellow lentils.jpeg" alt="yellow lentils"></label> <p>Yellow lentils</p> </div></li> 
+             <li><div id="checks"><input type="checkbox" name="checkbox" value="groundnuts"><label for="checkbox"><img class="ing" src="images/groundnuts.jpg" alt="groundnuts"></label> <p>Groundnuts</p> </div></li> 
+             <li><div id="checks"><input type="checkbox" name="checkbox" value="lemon"><label for="checkbox"><img class="ing" src="images/lemon.jpeg" alt="lemon"></label> <p>Lemon</p> </div></li> 
+             <li><div id="checks"><input type="checkbox" name="checkbox" value="turmeric powder"><label for="checkbox"><img class="ing" src="images/tumeric.jpeg" alt="Turmeric powder"></label> <p>Turmeric powder</p> </div></li> 
+             <li><div id="checks"><input type="checkbox" name="checkbox" value="curryleaves"><label for="checkbox"><img class="ing" src="images/curryleaves.jpeg" alt="curryleaves"></label> <p>Curry leaves</p> </div></li> 
+             <li><div id="checks"><input type="checkbox" name="checkbox" value="ginger"><label for="checkbox"><img class="ing" src="images/ginger.jpeg" alt="ginger"></label> <p>Ginger</p> </div></li> 
+             <li><div id="checks"><input type="checkbox" name="checkbox" value="carrot"><label for="checkbox"><img class="ing" src="images/carrot.jpeg" alt="Carrot"></label> <p>Carrot</p> </div></li> 
+             <li><div id="checks"><input type="checkbox" name="checkbox" value="tamarind"><label for="checkbox"><img class="ing" src="images/tamarind.jpeg" alt="Tamarind"></label> <p>Tamarind</p> </div></li> 
+          
+          
+      </div>
+      </form>
+    
+</body>
+</html>

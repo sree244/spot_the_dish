@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<link rel="stylesheet" type="text/css" href="css/sheet1.css">
+<script defer>
+    function validatesignin() {
+        let email = document.getElementById("signmail");
+        let password1 = document.getElementById("signpass1");
+        let password2 = document.getElementById("signpass2");
+        let name = document.getElementById("signname");
+        let ValidationBlock = document.getElementById("validation");
+        
+        // Regex pattern for email validation
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (email.value.trim() === "") {
+            alert("Email is required");
+            return false;
+        }
+
+        if (password1.value.trim() === "" || password2.value.trim() === "") {
+            alert("Password fields cannot be empty.");
+        }
+
+        if (name.value.trim() === "") {
+            alert("Username is required.");
+            return false;
+        }
+
+        // Check if email is valid
+        if (!emailPattern.test(email.value) && password1.value !== password2.value) {
+            alert("Email is not valid and Passwords donot match.");
+            return false;
+        } 
+        
+        // Check if password is provided
+       
+        if (password1.value !== password2.value) {
+            alert("Passwords are not matching.");
+            return false;
+        } 
+
+        if (!emailPattern.test(email.value)) {
+            alert("Email is not valid.")
+            return false;
+        }
+        // Form is valid, allow submission
+        return true;
+    }
+</script>
+</head>
+<body>
+<div class="container">
+    <img src="images/left.jpeg" alt="Left Image" class="left-image">
+    <div class="form-container">
+        <form class="form" method="POST" autocomplete="off"
+        onsubmit="return validatesignin()">
+            
+            <h1>Sign up</h1>
+            <center><input id = "signmail" type="email" placeholder="Enter your email-id" name="Usermail" required></center>
+            <center><input id = "signname" type="text" placeholder="Enter username" name="Username" maxlength="30" required></center>
+            <center><input id = "signpass1" type="password" placeholder="Enter Password" name="password1" minlength="8" maxlength="8" required></center>
+            <center><input id = "signpass2" type="password" placeholder="Confirm Password" name="password2" minlength="8" maxlength="8" required></center>
+            <center><font color="grey"><small>* Password must be of 8 characters long.</font>
+            </small> </center><br>
+            <center><button type="submit">Create Account</button></center><br>
+            <center><span class="psw"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp;<a id="login" 
+                href="/">Back to Login</a></span> </center><br>
+                <% if (message) { %>
+                    <p class="message" style="color: green;text-align:center"><%= message %></p>
+                <% } %>
+                
+                
+        </form>
+    </div>   
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<link rel="stylesheet"  href="css/sheet1.css">
+<style>
+    .email_validation {
+        display: none;
+        color: red;
+        text-align:center;
+    }
+</style>
+<script defer>
+    function validateForm() {
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
+        let emailValidationBlock = document.getElementById("email_validation");
+        
+        // Regex pattern for email validation
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        if (email.value.trim() === "") {
+            alert("Email is required.");
+            return false;
+        }
+        if (password.value.trim() === "") {
+            alert("Password is required.");
+            return false;
+        }
+        // Check if email is valid
+        if (!emailPattern.test(email.value)) {
+            emailValidationBlock.style.display = "block";
+            return false;
+        } else {
+            emailValidationBlock.style.display = "none";
+        }
+        
+        // Check if password is provided
+        
+        // Form is valid, allow submission
+        return true;
+    }
+
+
+</script>
+</head>
+<body>
+    
+<div class="container">
+    <img src="images/left.jpeg" alt="Left Image" class="left-image">
+    <div class="form-container">
+        <form class="form"  method="POST" autocomplete="off" onsubmit="return validateForm()">
+            <div class="email_validation" id="email_validation">
+                Not a valid email.</div>
+            <p> <% if (message) { %>
+                    <p style="color:red;text-align:center"><%= message %></p>
+                <% } %></p>
+            <h1>Login</h1>
+            <center><input type="email" placeholder="Enter your email-id" name="Usermail"
+                id="email" required></center>
+            <center><input type="password" placeholder="Enter Password" name = "password" minlength="8" 
+               id="password" maxlength="8" required></center>
+            <center><font color="grey"><small>* Password must be of 8 characters long.</font>
+            </small> </center><br>
+            <center><button type="submit" >Login</button></center><br>
+            <center><span class="psw">Forgot <a id="forgot" href="/forgot">password?</a> &nbsp;&nbsp;&nbsp; <a id="create" 
+                href="/signup">Create</a> account?</span> </center><br>
+            <center><a href="/verification">Resend Verification Mail </a></center>
+                
+        </form>
+    </div>
+</div>
+</body>
+</html>

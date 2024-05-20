@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Home</title>
+    <script src="js/script.js"></script>
+</head>
+<body class="home">
+    <div>
+        <a href="/home">Home</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/change-password">Change Password</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">LogOut</a>
+    </div>
+    <br>
+    <p><h1 class="user">Hi, <%= username %>!</h1></p>
+    <h1>SEARCH<br><b>UNLIMITED RECIPES...</b></h1>
+    <input type="button" onclick="location.href='/byingredient';" value="By Ingredients"/>
+    <input type="button" onclick="location.href='/recipes';" value="By Recipe"/>
+</body>
+</html>

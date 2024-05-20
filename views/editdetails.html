@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body{
+            font-family:sans-serif;
+            background-image: url("/images/edit2.avif");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        #edit_details{
+            margin-top: 90px;
+            margin-left:300px;
+            padding:20px;
+            border:2px solid black;
+            width:50%;
+            border-radius: 3px;
+        }
+        label{
+            margin:5px;
+            padding:10px;
+        }
+        #buttons{
+            display: flex;
+        }
+        input[type="submit"],input[type="button"]{
+            color:white;
+            width:100px;
+            height:50px;
+            margin-top:20px;
+            margin-left :130px;
+            text-align:center;
+            border-radius: 5px;
+            background-color:darkcyan;
+            cursor: pointer;
+        }
+        input[type=text]{
+            border:2px solid black;
+            width:200px;
+            height:30px;
+            border-radius: 3px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            // Get form elements
+            var username = document.getElementById("username").value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var dietChoice = document.querySelector('input[name="dietChoice"]:checked');
+
+            // Check if at least one field is filled
+            if (!username && !gender && !dietChoice) {
+                alert("Please fill at least one field.");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+
+        function getback(){
+            window.location.href='/profile';
+        }
+    </script>
+</head>
+<body>
+    <form id="edit_details" action="/edit" method="POST" onsubmit="return validateForm()">
+        <label for="username">New Username:</label>
+        <input type="text" placeholder="Enter new username" id="username" name="username"><br><br>
+        <label>Gender:</label><br>
+        <input type="radio" id="female" name="gender" value="F"><label for="female">Female</label><br>
+        <input type="radio" id="male" name="gender" value="M"><label for="male">Male</label><br>
+        <input type="radio" id="other" name="gender" value="Other"><label for="other">Other</label><br><br>
+        <label>Type of dietary Classification:</label><br>
+        <input type="radio" id="vegetarian" name="dietChoice" value="veg"><label for="vegetarian">Vegetarian</label><br>
+        <input type="radio" id="nonVegetarian" name="dietChoice" value="non-veg"><label for="nonVegetarian">Non-Vegetarian</label><br>
+        <div id="buttons">
+            <input type="submit" value="Save">
+            <input type="button" value="Go Back" onclick="getback()">
+        </div>
+    </form>
+</body>
+</html>

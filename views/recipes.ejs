@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search by Recipe</title>
+    <link rel="stylesheet" type="text/css" href="css/search.css">
+    <script>
+        function viewRecipeDetails(url, label) {
+        // Open the recipe details page in a new tab
+          window.open(`/recipe-details?url=${encodeURIComponent(url)}&label=${encodeURIComponent(label)}`, '_blank');
+    }
+</script>
+
+    </script>
+</head>
+<body>
+    <div class="ing">
+        <a class = "nav" href="/home">Home</a>
+        <a class = "nav" href="/contact">Contact Us</a>
+        <a class = "nav" href="/change-password"> Change Password </a>
+        <a class = "nav" href="/search-history"> Display Search History </a>
+        <a class = "nav" href="/logout">Log out</a>
+    </div>
+    <form method="POST" autocomplete="off">
+    <div class="search-container">
+      <div class="filters">
+        <div class="filter-left">
+          <label for="prepTime">Prep Time:</label>
+          <select id="total-time" name="prepTime">
+            <option value="none" <%= prepTime === 'none' ? 'selected' : '' %>>None</option>
+            <option value="0-15" <%= prepTime === '0-15' ? 'selected' : '' %>>&lt;15 minutes</option>
+            <option value="15-30" <%= prepTime === '15-30' ? 'selected' : '' %>>15-30 minutes</option>
+            <option value="30-60" <%= prepTime === '30-60' ? 'selected' : '' %>>30-60 minutes</option>
+            <option value="60" <%= prepTime === '60' ? 'selected' : '' %>>&gt;1 hour</option>
+            <!-- Add more options as needed -->
+        </select>
+         &nbsp; &nbsp;
+            <!-- Add left filters here -->
+            <label for="dietLabel">Diet Labels:</label>
+            <select id="diet-label" name="dietLabel">
+              <option value="none" <%= dietLabel === 'none' ? 'selected' : '' %>>None</option>
+              <option value="balanced" <%= dietLabel === 'balanced' ? 'selected' : '' %>>Balanced</option>
+              <option value="high-fiber" <%= dietLabel === 'high-fiber' ? 'selected' : '' %>>High-Fiber</option>
+              <option value="high-protein" <%= dietLabel === 'high-protein' ? 'selected' : '' %>>High-Protein</option>
+              <option value="low-carb" <%= dietLabel === 'low-carb' ? 'selected' : '' %>>Low-Carbon</option>
+              <option value="low-fat" <%= dietLabel === 'low-fat' ? 'selected' : '' %>>Low Fat</option>
+              <option value="low-sodium" <%= dietLabel === 'low-sodium' ? 'selected' : '' %>>Low Sodium</option>
+              <!-- Add more options as needed -->
+          </select>
+          
+        </div>
+      </div>
+        
+        <div class="SearchBar" style="display: inline;"> <br>
+           
+                <input class="nosubmit" type="search" placeholder="Search..." name="searcher" value="<%= searchQuery %>"required>
+                <button type="submit" value="Submit" class="cancelbtn">SEARCH</button>
+            
+        </div>
+      <div class="filters">
+        <div class="filter-right">
+          <!-- Add right filters here -->
+          <label for="cuisineType">Cuisine Type:</label>
+          <select id="cuisine-type" name="cuisineType">
+            <option value="none" <%= cuisineType === 'none' ? 'selected' : '' %>>None</option>
+            <option value="indian" <%= cuisineType === 'indian' ? 'selected' : '' %>>Indian</option>
+            <option value="american" <%= cuisineType === 'american' ? 'selected' : '' %>>American</option>
+            <option value="south east asian" <%= cuisineType === 'south east asian' ? 'selected' : '' %>>South Asian</option>
+            <option value="french" <%= cuisineType === 'french' ? 'selected' : '' %>>French</option>
+            <option value="british" <%= cuisineType === 'british' ? 'selected' : '' %>>European</option>
+            <option value="italian" <%= cuisineType === 'italian' ? 'selected' : '' %>>Italian</option>
+            <option value="mexican" <%= cuisineType === 'mexican' ? 'selected' : '' %>>Mexican</option>
+            <option value="chinese" <%= cuisineType === 'chinese' ? 'selected' : '' %>>Chinese</option>
+            <!-- Add more options as needed -->
+        </select>
+         &nbsp; &nbsp;
+          <label for="dishType">Dish Type:</label>
+          <select id="dish-type" name="dishType">
+            <option value="none" <%= dishType === 'none' ? 'selected' : '' %>>None</option>
+            <option value="main course" <%= dishType === 'main course' ? 'selected' : '' %>>Main Course</option>
+            <option value="starter" <%= dishType === 'starter' ? 'selected' : '' %>>Starter</option>
+            <option value="desserts" <%= dishType === 'desserts' ? 'selected' : '' %>>Dessert</option>
+            <option value="special occasions" <%= dishType === 'special occasions' ? 'selected' : '' %>>Occasions</option>
+            <option value="biscuits and cookies" <%= dishType === 'biscuits and cookies' ? 'selected' : '' %>>Cookies</option>
+            <option value="sweets" <%= dishType === 'sweets' ? 'selected' : '' %>>Sweet</option>
+            <option value="cereals" <%= dishType === 'cereals' ? 'selected' : '' %>>Cereals</option>
+        </select>
+        
+              <!-- Add more options as needed -->
+          </select>
+      </div>
+  </div>
+
+    </div>
+  </form>
+
+    <% if (!searchResults) { %>
+      <div class="image-container">
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/cookies.jpeg" alt="Chocolate chip cookies">
+          <span>Chocolate chip cookies</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/fruitsalad.jpg" alt="Fruit salad">
+          <span>Fruit salad</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/vanilla-muffins.jpg" alt="Muffins">
+          <span>Muffins</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/payasam.jpg" alt="Payasam">
+          <span>Payasam</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/ravakesari.jpg" alt="Rava Kesari">
+          <span>Rava Kesari</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/gulabjamun.jpg" alt="Gulab Jamun">
+          <span>Gulab Jamun</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/dosa.jpg" alt="Dosa">
+          <span>Dosa</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/chole.jpg" alt="Chole">
+          <span>Chole</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/veg-sandwich.jpg" alt="Veg sandwich">
+          <span>Veg sandwich</span>
+        </div> 
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/egg sandwich.jpg" alt="Egg sandwich">
+          <span>Egg sandwich</span>
+        </div>
+        
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/biryani.jpg" alt="Biriyani">
+          <span>Biriyani</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/chillichicken.jpg" alt="Chilli chicken">
+          <span>Chilli chicken</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/friedrice.jpg" alt="Fried rice">
+          <span>Fried rice</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/matarmushroom.jpg" alt="Matar mushroom">
+          <span>Matar mushroom</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/palak.jpg" alt="Palak">
+          <span>Palak panneer</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/poha.jpg" alt="Poha">
+          <span>Poha</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/pongal.jpg" alt="Pongal">
+          <span>Pongal</span>
+        </div>
+        <div class="image" onclick="performSearch(this)">
+          <img src="images/tomatorice.jpg" alt="Tomato rice">
+          <span>Tomato rice</span>
+        </div>
+      </div>
+    </div>
+        
+    <% }  else if (searchResults.length === 0) { %>
+      <div class="no-results">
+        <br> <br>
+          <p>No results found for given search Or You might have entered an unknown recipe.</p>
+          <p>Please modify your search and try again.</p>
+      </div>
+  <% } else { %>
+    <div id="recipe-container">
+      <% let count = 0; %>
+      <div class="row">
+          <% searchResults.forEach(recipe => { %>
+          
+              <div class="recipe-card">
+                  <% const edit1 = recipe.label.split(/[|/,(]/)[0].trim(); %>
+                  <% const title = edit1.charAt(0).toUpperCase() + edit1.slice(1); %>
+                  <div class="recipe-title"><strong><%= title %></strong></div>
+                  <img class="recipe-image" src="<%= recipe.image %>" alt="<%= title %>" onclick="viewRecipeDetails('<%= recipe.url %>', '<%= title %>')">
+
+                  <div class="recipe-details">
+                      <p><strong>Servings:</strong> <%= recipe.yield %></p>
+                      <p><strong>Source:</strong> <%= recipe.source %></p>
+                      <!-- <p><strong>Cuisine Type:</strong> <%= recipe.cuisineType %></p>
+                      <p><strong>Dish Type:</strong> <%= recipe.dishType %></p> -->
+                  </div>
+              </div> 
+              <% if (count % 3 === 2) { %>
+                  </div><% if (count / 3 < 4) { %><div class="row"><% } %>
+              <% } %>
+              <% count++; %>
+          <% }); %>
+      </div>
+  </div>
+
+    <% } %>
+
+    <script>
+      function performSearch(clickedImage) {
+        // Get the recipe name from the alt attribute of the clicked image
+        const recipeName = clickedImage.querySelector('img').alt;
+        // Get the search input element
+        const searchInput = document.querySelector('input[name="searcher"]');
+        // Set the value of the search input to the recipe name
+        searchInput.value = recipeName;
+        // Submit the form
+        document.querySelector('form').submit();
+      }
+
+      
+    </script>
+    
+    <script>
+      const urlWithoutParams = window.location.href.split('?')[0];
+      history.replaceState({}, document.title, urlWithoutParams);
+  </script>
+</body>
+</html>
+

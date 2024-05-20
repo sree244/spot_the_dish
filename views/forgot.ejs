@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgot Password</title>
+<link rel="stylesheet" type="text/css" href="css/sheet1.css">
+<style>
+    .container {
+        display: flex;
+        width: 70%; 
+        height: 70%; 
+        overflow: hidden; 
+    }
+    .form h2 {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+</style>
+<script defer>
+    function validateform() {
+        let email = document.getElementById("foremail");
+        // Regex pattern for email validation
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (email.value.trim() === "") {
+            alert("Email is required.");
+            return false;
+        }
+        // Check if email is valid
+        if (!emailPattern.test(email.value)) {
+            alert("Email is not valid. Enter valid email.")
+            return false;
+        } 
+        // Check if password is provided
+        
+        // Form is valid, allow submission
+        return true;
+    }
+
+
+</script>
+</head>
+<body>
+
+<div class="container" >
+    <img src="images/forgot.png" alt="Left Image" class="left-image">
+    <div class="form-container">
+        <form class="form" method="POST" autocomplete="off" onsubmit="return validateform()">
+            <center><h2>Forgot Password</h2></center>
+            <center><input type="email" id="foremail" name="Useremail" placeholder="Enter your registered email"required></center>
+            <center><button type="submit">Reset</button></center><br>
+            <center><span class="psw"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp;<a id="login" 
+                    href="/">Back to Login</a></span> </center><br>
+            <% if (message) { %>
+                <% if (error === "true") { %>
+                    <p style="color:grey;text-align:center"> <%= message %></p> <!-- Display another message if error is "true" (as a string) -->
+                <% } else { %>
+                    <!-- Display a default message when error is not "true" -->
+                    <p style="color: grey;text-align:center"><%= message %></p>
+                <% } %>
+            <% } %>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

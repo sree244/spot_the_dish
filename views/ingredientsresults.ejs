@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="Stylesheet" href="css/ingredientresults.css">
+    <script src="js/ing.js" defer></script>
+</head>
+<body>
+    <input type="button" value="GOBack" onclick="getBack()">
+    
+    <div id="output"></div>
+    <div id="results">
+        <% if (searchResults.length === 0) { %>
+            <div class="no-results">
+                <p>No results found for given search Or You might have entered an unknown recipe.</p>
+                <p>Please modify your search and try again.</p>
+            </div>
+        <% } else { %>
+          <div id="recipe-container">
+                <% searchResults.forEach(recipe => { %>
+                
+                    <div class="recipe-card" onclick="getvideo(this)">
+                        <% const edit1 = recipe.label.split(/[|/,(]/)[0].trim(); %>
+                        <% const title = edit1.charAt(0).toUpperCase() + edit1.slice(1); %>
+                        <h3 class="recipe-title"><strong><%= title %></strong></h3>
+                         <!-- Use recipe ID in the URL -->
+                        <a id="image" href="<%= recipe.id %>" target="blank">
+                        <img class="recipe-image" src="<%= recipe.image %>" alt="<%= title %>">
+                        </a>
+                        <div class="recipe-details">
+                            <p><strong>Servings:</strong> <%= recipe.yield %></p>
+                            <p><strong>Cuisine Type:</strong> <%= recipe.cuisineType %></p>
+                            <p><strong>Dish Type:</strong> <%= recipe.dishType %></p>
+                        </div>
+                    </div> 
+                <% }); %>
+          <% } %>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Profile Picture</title>
+    <style>
+        body{
+            background-image: url("/images/div2.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+        }
+        div {
+            background-image: url("/images/edit2.avif");
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 90px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 50px;
+        }
+        img {
+            width: 160px;
+            height: 160px;
+            cursor: pointer;
+            border: 2px solid transparent; /* Added border for selected effect */
+        }
+        img.selected {
+            border-color: darkcyan; /* Added style for selected effect */
+        }
+        input[type="submit"],
+        input[type="button"] {
+            margin: 30px;
+            width: 90px;
+            height: 50px;
+            border-radius: 3px;
+            border: 2px solid darkcyan;
+            background-color: darkcyan;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="profilePicForm" action="/updateprofilepic" method="POST">
+            <img src="images/f1.jpg" onclick="selectImage(this)" alt="female 1">
+            <img src="images/f2.png" onclick="selectImage(this)" alt="female 2">
+            <img src="images/f1.png" onclick="selectImage(this)" alt="female 3">
+            <img src="images/f3.jpg" onclick="selectImage(this)" alt="female 4">
+            <img src="images/f4.jpg" onclick="selectImage(this)" alt="female 5"><br>
+            <img src="images/m1.avif" onclick="selectImage(this)" alt="male 1">
+            <img src="images/m2.jpg" onclick="selectImage(this)" alt="male 2">
+            <img src="images/m3.jpg" onclick="selectImage(this)" alt="male 3">
+            <img src="images/m4.jpg" onclick="selectImage(this)" alt="male 4">
+            <img src="images/m5.jpg" onclick="selectImage(this)" alt="male 5"><br>
+            <input type="submit" value="Change">
+            <input type="button" onclick="getback()" value="Go Back">
+            <!-- Hidden input field to hold the selected profile picture URL -->
+            <input type="hidden" id="profilePicUrlInput" name="profilePicUrl">
+        </form>
+    </div>
+
+    <script>
+        let selectedImage = null;
+
+        function selectImage(img) {
+            // Remove selection from previously selected image
+            if (selectedImage) {
+                selectedImage.classList.remove('selected');
+            }
+            // Add selection to the clicked image
+            img.classList.add('selected');
+            selectedImage = img;
+        }
+
+        function getback() {
+            window.location.href = '/profile';
+        }
+
+        document.getElementById("profilePicForm").addEventListener("submit", function (event) {
+            if (!selectedImage) {
+                alert("Please select a profile picture before changing.");
+                event.preventDefault(); // Prevent form submission
+            } else {
+                const profilePicUrl = selectedImage.src;
+                // Add the selected profile pic URL to a hidden input field
+                document.getElementById("profilePicUrlInput").value = profilePicUrl;
+            }
+        });
+    </script>
+</body>
+</html>
