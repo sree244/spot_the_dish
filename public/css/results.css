@@ -1,0 +1,40 @@
+.video-slider {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.video-container {
+    display: flex;
+    width: 300%; /* Adjust this value according to the number of videos */
+    transition: transform 0.5s ease;
+}
+
+.video-iframe {
+    width: calc(33.33% - 10px);
+    height: 300px;
+    border: none;
+}
+
+/* Arrow buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover,
+.next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
