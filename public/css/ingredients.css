@@ -1,0 +1,138 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url("/images/in2.webp");
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+}
+div.ing{
+    margin:2%;
+    background-color: rgb(6, 151, 151);
+    padding:2%;
+}
+a{
+    margin:45px;
+    padding:5px;
+    color: whitesmoke;
+    font-size:20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: none;
+}
+
+a:hover{
+    opacity: 0.5;
+}
+
+
+#ingredients_list{
+    display: flex;
+    flex-wrap:wrap;
+    width:auto;
+    margin:30px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+div.checks{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:30px;
+}
+div.checks p {
+    text-align: center;
+}
+img.ing{
+    width:150px;
+    height:150px;
+    margin-top:20px;
+    margin-bottom:20px;
+    margin-right:20px;
+    cursor: pointer;
+}
+input[type=search]{
+    margin-left:430px;
+    margin-top:20px;
+    margin-bottom:20px;
+    border: 2px solid black;
+    width:350px;
+    height:30px;
+    border-radius: 6px;
+    padding:15px;
+}
+
+li{
+    list-style-type: none;
+    margin-left:90px;
+    margin-right:20px;
+    margin-top:20px;
+    margin-bottom:20px;
+    cursor:pointer;
+}
+input[type=submit]{
+    width:150px;
+    height:50px;
+    text-align: center;
+    background-color:darkcyan;
+    margin:10px;
+    border-color:darkcyan;
+    border-radius: 3px;
+    padding:10px;
+    cursor:pointer;
+    display:inline-block;
+    margin-left:80px;
+    color:white;
+}
+input[type=submit]:hover{
+    text-shadow: 2px 2px 5px white; 
+    box-shadow: 2px 2px 5px darkcyan;
+}
+img.connect{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+i{
+    margin-top: 50px;
+    margin-left:240px;
+    display:flex;
+    font-size:50px;
+}
+i:hover{
+    cursor:pointer;
+}
+input[type="checkbox"]{
+    border:2px solid black;
+    cursor: pointer;
+    width:20px;
+    height: 20px;
+}
+p{
+    text-align: center;
+}
+label{
+    margin-left:50px;
+  }
+
+
+  select {
+    color: black; 
+    padding: 3px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+  }
+  div.icons{
+    display: flex;
+    flex-wrap: wrap;
+    margin:2%;
+}
+p.icons{
+    margin-left:19%;
+    font-size:15px;
+    text-align: center;
+    padding:1%;
+    
+}
+div.para{
+    display:flex;
+    flex-wrap: wrap;
+    margin:3%;
+}
